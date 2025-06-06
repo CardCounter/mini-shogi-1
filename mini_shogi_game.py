@@ -1,5 +1,4 @@
 import numpy as np
-import hashlib
 
 BOARD_SIZE = 5
 WHOS_TURN = {0: 'BLACK', 1: 'WHITE'}
