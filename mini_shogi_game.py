@@ -87,8 +87,8 @@ BLACK_START = [1, 2, 3, 4, 5]
 WHITE_START = [-5, -4, -3, -2, -1]
 
 class piece:
-    def __init__(self, piece: int, row, col):
-        self.piece = piece
+    def __init__(self, piece_type: int, row, col):
+        self.piece = piece_type
         self.row = row
         self.col = col
         self.moves = MOVE_DICT[self.piece]
@@ -167,18 +167,21 @@ class Game:
         self.turn = 0
 
     def is_loc_edge_promote(self, piece):
+        # chekc if piece is one row outside of their respective promotion zone
         pass
 
     def is_loc_in_promote(self, piece):
+        # check if piece is in respective promotion zone
         pass
 
     def can_piece_promote(self, piece, future_row, future_col): ## True, False, dont, has to.
+        """
+        returns 0, 1, 2 or similar. 0 cant, 1 can, 2 has to
+        some pieces eg pawn needs to be promoted if they enter the promotion zone
+        """
         pass
 
     def get_all_piece_moves(self, piece, game_board): # return list of (piece, (move)), move = (row, col, promote_after_move)
-
-        # also check if in check #################
-
         possible_moves = piece.moves
         current_row = piece.row
         current_col = piece.col
@@ -260,8 +263,10 @@ class Game:
         all_actions = list_of_moves
 
         if self.is_check(game_board):
-            pass
             ## filter out all moves that dont get you out of check. can use this for checkmate actually.
+            # actually implement it this way: for every move do move, if in check, discard move, can check checkmate 
+            # here if you want
+            pass
 
         return all_actions
 
@@ -272,6 +277,7 @@ class Game:
         pass
 
     def is_piece_attacking_enemy_king(self, piece, board): # need to get piece colour to know which king we're attacking
+        # used to see if in check
         pass
 
     def get_all_possible_valid_moves(self):
